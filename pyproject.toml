@@ -1,10 +1,10 @@
 [project]
-name = "deviceidpy"
+name = "py-deviceid"
 version = "0.1.0"
-authors = [{name = "Microsoft Corporation", email="tbd"}]
-description = "A simple library to get or create a unique device id for a device."
+authors = [{name = "Microsoft Corporation", email="vstelinstr@microsoft.com"}]
+description = "A simple library to get or create a unique device id for a device in Python."
 readme = "README.md"
-license = {file = "LICENSE"}
+license = {file = "LICENSE.txt"}
 classifiers = [
   "Development Status :: 3 - Production/Alpha",
   "Programming Language :: Python :: 3:: Only",
