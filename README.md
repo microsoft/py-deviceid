@@ -1,6 +1,6 @@
 # Device ID for Python
 
-`deviceid` provides a device ID for a given system, based on the `DevDeviceId` speficication.
+`deviceid` provides a device ID for a given system, based on the `DevDeviceId` specification.
 
 ## Installation
 

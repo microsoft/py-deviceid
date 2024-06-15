@@ -1,4 +1,4 @@
-go-deviceid
+py-deviceid
 
 Copyright (c) Microsoft Corporation.
 
