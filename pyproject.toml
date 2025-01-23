@@ -6,8 +6,8 @@ description = "A simple library to get or create a unique device id for a device
 readme = "README.md"
 license = {file = "LICENSE.txt"}
 classifiers = [
-  "Development Status :: 3 - Production/Alpha",
-  "Programming Language :: Python :: 3:: Only",
+  'Development Status :: 3 - Alpha',
+  'Programming Language :: Python :: 3 :: Only',
   'Programming Language :: Python :: 3',
   'Programming Language :: Python :: 3.8',
   'Programming Language :: Python :: 3.9',
@@ -21,3 +21,5 @@ requires-python = ">=3.8"
 [project.urls]
 Repository = "https://github.com/microsoft/py-deviceid"
 
+[build-system]
+requires = ["setuptools"]
