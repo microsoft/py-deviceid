@@ -38,8 +38,8 @@ extends:
     stages:
     - stage: BuildAndTest
       jobs:
-      - job: Test
-        displayName: Test
+      - job: BuildAndTest
+        displayName: BuildAndTest
 
         steps:
         - task: UsePythonVersion@0
@@ -53,7 +53,7 @@ extends:
           displayName: Install prerequisites
  
         - script: | 
-            py -m build
+            py -m build --outdir $(Build.ArtifactStagingDirectory)\dist
           displayName: Build
 
         - script: |
@@ -64,9 +64,9 @@ extends:
           - template: /azure-pipelines/MicroBuild.Publish.yml@MicroBuildTemplate
             parameters: 
               intent: 'PackageDistribution'
-              contentType: 'npm'
+              contentType: 'PyPi'
               contentSource: 'Folder'
-              folderLocation: '$(Build.ArtifactStagingDirectory)\npmpackages'
+              folderLocation: '$(Build.ArtifactStagingDirectory)\dist'
               waitForReleaseCompletion: true
               owners: 'piel@microsoft.com'
               approvers: 'rdawson@microsoft.com'
