@@ -8,7 +8,7 @@ trigger: # cause a pipeline to run whenever you push an update to the specified 
 
 parameters:
 - name: Publish
-  displayName: Push to public npm feed?
+  displayName: Push to pypi feed?
   type: boolean
   default: false
 
@@ -27,7 +27,7 @@ extends:
   # The pipeline extends the 1ES PT which will inject different SDL and compliance tasks.
   # For non-production pipelines, use "Unofficial" as defined below.
   # For productions pipelines, use "Official".
-  template: /azure-pipelines/MicroBuild.1ES.Official.yml@MicroBuildTemplate
+  template: /azure-pipelines/MicroBuild.1ES.Official.Publish.yml@MicroBuildTemplate
   parameters:
     customBuildTags:
     - Ignore-Tag
@@ -49,16 +49,37 @@ extends:
         - script: |
             python -m pip install -e $(Build.SourcesDirectory)
             python -m pip install pytest
-          displayName: Install PyTest
+            python -m pip install  --upgrade build
+          displayName: Install prerequisites
+ 
+        - script: | 
+            py -m build
+          displayName: Build
 
         - script: |
             python -m pytest tests
           displayName: Run Tests
 
+        - ${{ if parameters.Publish }}:
+          - template: /azure-pipelines/MicroBuild.Publish.yml@MicroBuildTemplate
+            parameters: 
+              intent: 'PackageDistribution'
+              contentType: 'npm'
+              contentSource: 'Folder'
+              folderLocation: '$(Build.ArtifactStagingDirectory)\npmpackages'
+              waitForReleaseCompletion: true
+              owners: 'piel@microsoft.com'
+              approvers: 'rdawson@microsoft.com'
+
+        - task: 1ES.PublishPipelineArtifact@1
+          inputs:
+            targetPath: '$(Build.ArtifactStagingDirectory)'
+            artifactName: output
+
         # Because there is no build and no build scanning is enabled, there are no TSA files to upload.
         # Commenting this out for now.
-        # - task: TSAUpload@2
-        #   inputs:
-        #     GdnPublishTsaOnboard: true
-        #     GdnPublishTsaConfigFile: '$(Build.SourcesDirectory)/.config/TSAOptions.json'
-        #   displayName: 'TSA upload to Codebase (py-deviceid)'
+        - task: TSAUpload@2
+          inputs:
+            GdnPublishTsaOnboard: true
+            GdnPublishTsaConfigFile: '$(Build.SourcesDirectory)/.config/TSAOptions.json'
+          displayName: 'TSA upload to Codebase (py-deviceid)'
