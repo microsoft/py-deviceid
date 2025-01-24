@@ -38,8 +38,8 @@ extends:
     stages:
     - stage: BuildAndTest
       jobs:
-      - job: Test
-        displayName: Test
+      - job: BuildAndTest
+        displayName: BuildAndTest
 
         steps:
         - task: UsePythonVersion@0
