@@ -1,6 +1,6 @@
 [project]
 name = "py-deviceid"
-version = "0.1.0"
+version = "0.1.1"
 authors = [{name = "Microsoft Corporation", email="vstelinstr@microsoft.com"}]
 description = "A simple library to get or create a unique device id for a device in Python."
 readme = "README.md"
