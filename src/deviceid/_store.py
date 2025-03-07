@@ -3,7 +3,7 @@ from pathlib import Path
 import os
 
 
-REGISTRY_PATH = 'SOFTWARE\Microsoft\DeveloperTools'
+REGISTRY_PATH = r'SOFTWARE\Microsoft\DeveloperTools'
 REGISTRY_KEY = 'deviceid'
 DEVICEID_LOCATION = r'Microsoft/DeveloperTools/deviceid'
 
@@ -86,21 +86,3 @@ class WindowsStore():
                 device_id = winreg.SetValueEx(key_handle, REGISTRY_KEY, 0, winreg.REG_SZ, device_id)
         except OSError as oex:
             raise oex
-        
-
-
-            
-
-
-
-            
-        
-            
-
-            
-            
-
-
-
-
-

@@ -11,7 +11,7 @@ def get_device_id(*, full_trace: bool = False) -> str:
     An empty string is returned if an error occurs during saving or retrieval of the device id.
     Linux id location: $XDG_CACHE_HOME/deviceid if defined else $HOME/.cache/deviceid
     MacOS id location: $HOME/Library/Application Support/Microsoft/DeveloperTools/deviceid
-    Windows id location: HKEY_CURRENT_USER\SOFTWARE\Microsoft\DeveloperTools\deviceid
+    Windows id location: HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\DeveloperTools\\deviceid
     :keyword full_trace: If True, the full stack trace is logged. Default is False.
     :return: The device id.
     :rtype: str
@@ -47,6 +47,3 @@ def get_device_id(*, full_trace: bool = False) -> str:
         device_id = ""
 
     return device_id
-
-
-

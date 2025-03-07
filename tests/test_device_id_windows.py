@@ -12,7 +12,7 @@ import winreg
 
 from deviceid import get_device_id
 
-REGISTRY_PATH = 'SOFTWARE\Microsoft\DeveloperTools'
+REGISTRY_PATH = r'SOFTWARE\Microsoft\DeveloperTools'
 REGISTRY_KEY = 'deviceid'
 
 def test_get_device_id():
