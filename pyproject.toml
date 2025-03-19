@@ -23,3 +23,4 @@ Repository = "https://github.com/microsoft/py-deviceid"
 
 [build-system]
 requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
