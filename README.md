@@ -4,7 +4,7 @@
 
 ## Installation
 
-`pip install deviceid`
+`pip install py-deviceid`
 
 ## Usage
 
